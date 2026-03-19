@@ -44,9 +44,9 @@ void	ft_sort_int_tab(char *tab[], int size)
 		current_index = 1;
 		while (current_index < size - 1)
 		{
-			temp = tab[current_index];
 			if (ft_strcmp(tab[current_index], tab[current_index + 1]) > 0)
 			{
+				temp = tab[current_index];
 				tab[current_index] = tab[current_index + 1];
 				tab[current_index + 1] = temp;
 				count_changes++;

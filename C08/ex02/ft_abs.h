@@ -1,0 +1,6 @@
+#ifndef FT_ABS
+#define FT_ABS
+
+#define ABS(num) num < 0 ? -num : num;
+
+#endif
