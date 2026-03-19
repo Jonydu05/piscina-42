@@ -6,7 +6,7 @@
 /*   By: jzampier <jzampier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 01:23:45 by jzampier          #+#    #+#             */
-/*   Updated: 2026/03/02 17:40:44 by jzampier         ###   ########.fr       */
+/*   Updated: 2026/03/19 00:07:04 by jzampier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,24 @@ void	ft_putchar(char c)
 
 void	ft_putnbr(int nu)
 {
-	int	n;
-
-	n = nu;
-	if (n < 0)
+	if (nu == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+		return ;
+	}
+	if (nu < 0)
 	{
 		ft_putchar('-');
-		n = n * (-1);
+		nu = nu * (-1);
 	}
-	if (n < 10)
+	if (nu < 10)
 	{
-		ft_putchar(n + '0');
+		ft_putchar(nu + '0');
 	}
 	else
 	{
-		ft_putnbr(n / 10);
-		ft_putchar(n % 10 + '0');
+		ft_putnbr(nu / 10);
+		ft_putchar(nu % 10 + '0');
 	}
 }
 

@@ -6,66 +6,51 @@
 /*   By: jzampier <jzampier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 01:24:15 by jzampier          #+#    #+#             */
-/*   Updated: 2026/03/03 16:08:41 by jzampier         ###   ########.fr       */
+/*   Updated: 2026/03/19 01:20:07 by jzampier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_print_numbers(int n00, int n01, int n10, int n11)
+char	mini_itoa(int num)
 {
-	if (n10 > n00 || ((n10 == n00) && n11 > n01))
-	{
-		write(1, &n00, 1);
-		write(1, &n01, 1);
-		write(1, " ", 1);
-		write(1, &n10, 1);
-		write(1, &n11, 1);
-		if ((n00 == '9' && n01 == '8' && n10 == '9' && n11 == '9'))
-			return ;
-		write(1, ", ", 2);
-	}
+	return (num + '0');
 }
 
-void	ft_loop_comb(int n00, int n01, int n10, int n11)
+void	ft_print_numbers(int group1, int group2)
 {
-	n00 = '0';
-	while (n00 <= '9')
-	{
-		n01 = '0';
-		while (n01 <= '8')
-		{
-			n10 = '0';
-			while (n10 <= '9')
-			{
-				n11 = '0';
-				while (n11 <= '9')
-				{
-					ft_print_numbers(n00, n01, n10, n11);
-					n11++;
-				}
-				n10++;
-			}
-			n01++;
-		}
-		n00++;
-	}
+	char	num1;
+	char	num2;
+	char	num3;
+	char	num4;
+
+	num1 = mini_itoa(group1 / 10);
+	num2 = mini_itoa(group1 % 10);
+	num3 = mini_itoa(group2 / 10);
+	num4 = mini_itoa(group2 % 10);
+	write(1, &num1, 1);
+	write(1, &num2, 1);
+	write(1, " ", 1);
+	write(1, &num3, 1);
+	write(1, &num4, 1);
+	if (!(group1 == 98 && group2 == 99))
+		write(1, ", ", 2);
 }
 
 void	ft_print_comb2(void)
 {
-	int	n00;
-	int	n01;
-	int	n10;
-	int	n11;
+	int	group1;
+	int	group2;
 
-	ft_loop_comb(n00, n01, n10, n11);
+	group1 = 0;
+	while (group1 <= 98)
+	{
+		group2 = group1 + 1;
+		while (group2 <= 99)
+		{
+			ft_print_numbers(group1, group2);
+			group2++;
+		}
+		group1++;
+	}
 }
-
-/*
-int	main(void)
-{
-	ft_print_comb2();
-	return (0);
-}
-*/
